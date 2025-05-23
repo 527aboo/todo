@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ToDo登録</title>
+</head>
+<body>
+	<h2>新しいTodoを追加</h2>
+	
+	<form th:action="@{/todos/todos}" th:object="${todoForm}" method="post">
+		<label>タイトル: <input type="text" th:field="*{title}" required /></label><br />
+		<label>内奥: <textarea th:field="*{description}" ></textarea></label><br />
+		<label>期限: <input type="date" th:field="*{dueDate}" /></label><br />
+		<button type="submit">登録</button>
+	</form>
+	<a th:href="@{/todos/todos}">戻る</a>
+</body>
+</html>

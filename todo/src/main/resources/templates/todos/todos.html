@@ -5,9 +5,23 @@
 <title>TODO一覧</title>
 </head>
 <body>
+	<h2>あなたのToDoリスト</h2>
+	<a th:href="@{/todos/new}">新規ToDoを追加</a>
+	<table border="1">
+	    <tr>
+	        <th>タイトル</th>
+	        <th>期限</th>
+	        <th>完了</th>
+	    </tr>
+	    <tr th:each="todo : ${todos}">
+	        <td th:text="${todo.title}">タイトル</td>
+	        <td th:text="${todo.dueDate}">期限</td>
+	        <td th:text="${todo.completed ? '✔' : '✖'}">完了</td>
+	    </tr>
+	</table>
+
 	<form th:action="@{/logout}" method="post">
 	  <button type="submit">ログアウト</button>
 	</form>
-	<h1>TODO</h1>
 </body>
 </html>
