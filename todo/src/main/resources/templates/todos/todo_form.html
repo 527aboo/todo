@@ -5,13 +5,17 @@
 <title>ToDo登録</title>
 </head>
 <body>
-	<h2>新しいTodoを追加</h2>
-	
-	<form th:action="@{/todos/todos}" th:object="${todoForm}" method="post">
+	<h2 th:text="${todoForm.id} == null ? '新規ToDo登録' : 'ToDo更新'">新しいTodoを追加</h2>
+	<form 
+		th:action="@{${todoForm.id} == null ? '/todos/todos' : '/todos/update'}" 
+		th:object="${todoForm}" 
+		method="post"
+	>
+		<input type="hidden" th:field="*{id}" />
 		<label>タイトル: <input type="text" th:field="*{title}" required /></label><br />
 		<label>内奥: <textarea th:field="*{description}" ></textarea></label><br />
 		<label>期限: <input type="date" th:field="*{dueDate}" /></label><br />
-		<button type="submit">登録</button>
+		<button type="submit" th:text="*{id} == null ? '登録' : '更新'">登録</button>
 	</form>
 	<a th:href="@{/todos/todos}">戻る</a>
 </body>

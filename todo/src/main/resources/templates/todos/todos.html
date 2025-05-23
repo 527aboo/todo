@@ -12,11 +12,15 @@
 	        <th>タイトル</th>
 	        <th>期限</th>
 	        <th>完了</th>
+			<th>操作</th>
 	    </tr>
 	    <tr th:each="todo : ${todos}">
 	        <td th:text="${todo.title}">タイトル</td>
 	        <td th:text="${todo.dueDate}">期限</td>
 	        <td th:text="${todo.completed ? '✔' : '✖'}">完了</td>
+			<td>
+				<a th:href="@{'/todos/edit/' + ${todo.id}}">編集</a>
+			</td>
 	    </tr>
 	</table>
 
