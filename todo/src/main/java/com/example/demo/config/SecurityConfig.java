@@ -38,6 +38,8 @@ public class SecurityConfig {
     			logout
     			.logoutUrl("/logout")
     			.logoutSuccessUrl("/logout?.logout=true")
+    			.invalidateHttpSession(true)
+    			.deleteCookies("JSESSIONID")
     			.permitAll()
     		);
     	
