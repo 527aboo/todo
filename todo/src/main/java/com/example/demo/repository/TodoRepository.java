@@ -12,5 +12,7 @@ import com.example.demo.entity.User;
 public interface TodoRepository extends JpaRepository<Todo, Long> {
 	
 	List<Todo> findByUser(User user);
+	
+	List<Todo> findByUserOrderByIdAsc(User user);
 
 }

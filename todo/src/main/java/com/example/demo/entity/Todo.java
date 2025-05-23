@@ -33,6 +33,8 @@ public class Todo {
 	
 	private LocalDateTime createdAt = LocalDateTime.now();
 	
+	private LocalDateTime updatedAt;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "user_id")
 	private User user;

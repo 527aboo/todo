@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,10 @@ public class TodoService {
 	private TodoRepository todoRepository;
 	
 	public List<Todo> getTodosByUser(User user) {
-		return todoRepository.findByUser(user);
+		return todoRepository.findByUserOrderByIdAsc(user);
 	}
-	
-	public void createTodo(TodoForm form, User user) {
 		
+	public void createTodo(TodoForm form, User user) {
 		Todo todo = new Todo();
 		todo.setTitle(form.getTitle());
 		todo.setDescription(form.getDescription());
@@ -41,6 +41,7 @@ public class TodoService {
 		todo.setTitle(form.getTitle());
 		todo.setDescription(form.getDescription());
 		todo.setDueDate(form.getDueDate());
+		todo.setUpdatedAt(LocalDateTime.now());
 		todoRepository.save(todo);
 	}
 }
