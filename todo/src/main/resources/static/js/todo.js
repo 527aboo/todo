@@ -19,6 +19,25 @@ function completeTodo(todoId) {
 	});
 }
 
+// jquery寄りの書き方
+$('.complete_btn').on('click', function() {
+	let id = $(this).data("id");
+	$.ajax({
+		url: '/api/todos/' + id + '/complete'
+		, type: 'POST'
+		, headers: {
+			'X-CSRF-TOKEN': csrfToken
+		},
+		success: function () {
+			$('#btn-' + id).hide();
+			$('#status-' + id).text('✔');
+		},
+		error: function () {
+			alert('完了処理に失敗しました');
+		}
+	});
+})
+
 // CSRFトークンをmetaタグから取得してグローバル変数に保存
 let csrfToken = '';
 $(function () {
