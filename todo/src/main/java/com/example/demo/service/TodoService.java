@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -43,5 +44,20 @@ public class TodoService {
 		todo.setDueDate(form.getDueDate());
 		todo.setUpdatedAt(LocalDateTime.now());
 		todoRepository.save(todo);
+	}
+	
+	public boolean markAsCompleted(Long id, User user) {
+		Optional<Todo> optionalTodo = todoRepository.findById(id);
+		if (optionalTodo.isPresent()) {
+			Todo todo = optionalTodo.get();
+			if (!todo.getUser().getId().equals(user.getId())) {
+				return false;
+			}
+			todo.setCompleted(true);
+			todo.setUpdatedAt(LocalDateTime.now());
+			todoRepository.save(todo);
+			return true;
+		}
+		return false;
 	}
 }
