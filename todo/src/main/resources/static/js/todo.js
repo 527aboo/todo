@@ -20,7 +20,8 @@ function completeTodo(todoId) {
 }
 
 // jquery寄りの書き方
-$('.complete_btn').on('click', function() {
+//$('.complete_btn').on('click', function() {
+$(document).on('click', '.complete_btn', function () {
 	let id = $(this).data("id");
 	$.ajax({
 		url: '/api/todos/' + id + '/complete'
